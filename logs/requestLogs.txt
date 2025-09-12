@@ -30,3 +30,12 @@ METHOD -> GET    URL ->/users
 METHOD -> PATCH    URL ->/users/1
 METHOD -> DELETE    URL ->/users/1
 METHOD -> PATCH    URL ->/users/0
+METHOD -> GET    URL ->/users
+METHOD -> GET    URL ->/users/dsa
+METHOD -> GET    URL ->/users/-1
+METHOD -> GET    URL ->/users/-1
+METHOD -> GET    URL ->/users/-2
+METHOD -> GET    URL ->/users/2
+METHOD -> GET    URL ->/users/-1
+METHOD -> GET    URL ->/users/2
+METHOD -> GET    URL ->/users/0

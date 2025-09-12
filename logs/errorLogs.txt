@@ -1,0 +1,2 @@
+METHOD -> GET    URL ->/ ERROR -> Error: Body Not Found
+METHOD -> GET    URL ->/favicon.ico ERROR -> Error: Body Not Found

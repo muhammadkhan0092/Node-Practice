@@ -9,10 +9,10 @@ const {
   createUser,
 } = require("../controller/userOfflineController");
 
-router.get("/", getUsers);
-router.get("/:id", getSpecificUser);
-router.post("/", bodyMiddleWare, createUser);
-router.patch("/:id", bodyMiddleWare, updateNameOfUser);
-router.delete("/:id", deleteUser);
+router.get("offline/", getUsers);
+router.get("offline/:id", getSpecificUser);
+router.post("offline/", bodyMiddleWare, createUser);
+router.patch("offline/:id", bodyMiddleWare, updateNameOfUser);
+router.delete("offline/:id", deleteUser);
 
 module.exports = router;

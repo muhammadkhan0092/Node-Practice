@@ -15,24 +15,6 @@ mongoose.connect('mongodb://localhost:27017/user-app')
 .then(()=>console.log("Mongo Connected"))
 .catch((err)=>console.log(`Mongo Connection Failed ${err}`));
 
-//SCHEMA
-const userSchema = mongoose.Schema({
-  user_id:{
-    type : String,
-    unique:true,
-    required:true
-  },
-  user_name:{
-    type : String,
-    required : true
-  }
-},{timestamps:true});
-
-const User = mongoose.model("user",userSchema);
-User.create({
-  user_id : 1,
-  user_name:"Muhammad Khan",
-});
 
 
 
@@ -52,7 +34,8 @@ dbConfig
   });
 
 //ROUTES
-app.use("/users", userOfflineRoutes);
+app.use("/users",userOnlineRoutes);
+//app.use("/users", userOfflineRoutes);
 
 //SERVER SETUP
 app.listen(3002, (err) => {

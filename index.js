@@ -2,8 +2,14 @@ const express = require("express");
 const app = express();
 const userRoutes = require("./routes/userRoutes");
 const dbConfig = require("./config/db");
+
+
+
 const reqLoggingMiddleware = require("./middlewares/loggingMiddleware");
 const errorloggingMiddleware = require("./middlewares/errorMiddleware");
+
+
+
 //MIDDLEWARES
 app.use(express.json());
 app.use(reqLoggingMiddleware);

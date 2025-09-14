@@ -32,14 +32,14 @@ const getSpecificUser = async (req, res) => {
 
 const createUser = async (req, res) => {
   try {
-    const { user_name } = req.body;
-    if (!user_name) {
+    const { user_id,user_name } = req.body;
+    if (!user_name || !user_id) {
       return res.status(400).json({ error: "user_name is required" });
     }
 
     const newUser = await User.create({
-        user_id : 1,
-        user_name:"Muhammad Khan",
+        user_id : user_id,
+        user_name:user_name,
     });
     res
       .status(201)
@@ -76,13 +76,13 @@ const updateNameOfUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
   try {
-    const user_id = parseInt(req.params.id);
+    const user_id = req.params.id;
 
-    if (isNaN(user_id)) {
+    if (isNaN(parseInt(user_id))) {
       return res.status(400).json({ error: "Invalid user ID" });
     }
 
-    const deletedCount = await User.destroy({ where: { user_id } });
+    const deletedCount = await User.deleteOne({ user_id : user_id });
 
     if (deletedCount === 0) {
       return res.status(404).json({ error: "User not found" });

@@ -1,5 +1,6 @@
 const adminRepository = require("../repositories/adminRepository");
-
+const authService  =  require("../services/authService");
+const {v4 : uuid} = require("uuid");
 class adminService{
     static async createNewAdmin(admin_email,admin_password){
         const isExistingEmail = await adminRepository.getAdminFromEmail(admin_email);
@@ -37,9 +38,11 @@ class adminService{
         {
             const dbPassword = doesUserExist.admin_password;
             if(dbPassword===admin_password){
+                const uniqueSessionId = uuid();
+                authService.setAdmin(uniqueSessionId,admin_email);
                 return{
                     status:200,
-                    message:"Login Successfull"
+                    message:"Login Successfull " + uniqueSessionId
                 }
             }
             else

@@ -104,3 +104,8 @@ METHOD -> POST    URL ->/admin/signup
 METHOD -> POST    URL ->/admin/login
 METHOD -> POST    URL ->/admin/login
 METHOD -> POST    URL ->/admin/login
+METHOD -> POST    URL ->/admin/login
+METHOD -> GET    URL ->/users/online/
+METHOD -> POST    URL ->/admin/login
+METHOD -> GET    URL ->/users/online/
+METHOD -> GET    URL ->/users/online/

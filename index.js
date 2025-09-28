@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const userOfflineRoutes = require("./routes/userRoutesOffline");
 const userOnlineRoutes = require("./routes/userRoutesOnline");
+const adminRoutes = require("./routes/adminRoutes");
 const dbConfig = require("./config/db");
 
 
@@ -35,6 +36,7 @@ dbConfig
 
 //ROUTES
 app.use("/users",userOnlineRoutes);
+app.use("/admin",adminRoutes);
 //app.use("/users", userOfflineRoutes);
 
 //SERVER SETUP

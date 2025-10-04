@@ -7,11 +7,17 @@ class adminController{
         return res.status(result.status).send(result.message);
     }
 
-    static async loginAdmin(req,res){
+    static async loginAdminWithSessionId(req,res){
         const {admin_email,admin_password} = req.body;
-        const result = await adminService.loginAdmin(admin_email,admin_password);
+        const result = await adminService.loginAdminStatefull(admin_email,admin_password);
         return res.status(result.status).send(result.message);
     }
+     static async loginAdminWithToken(req,res){
+        const {admin_email,admin_password} = req.body;
+        const result = await adminService.loginAdminStateless(admin_email,admin_password);
+        return res.status(result.status).send(result.message);
+    }
+
 }
 
 module.exports = adminController;

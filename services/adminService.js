@@ -25,8 +25,7 @@ class adminService{
             }
         }
     }
-
-    static async loginAdmin(admin_email,admin_password){
+    static async loginAdminStatefull(admin_email,admin_password){
         const doesUserExist = await adminRepository.getAdminFromEmail(admin_email);
         if(!doesUserExist){
             return {
@@ -42,7 +41,34 @@ class adminService{
                 authService.setAdmin(uniqueSessionId,admin_email);
                 return{
                     status:200,
-                    message:"Login Successfull " + uniqueSessionId
+                    message:"Login Successfull with session " + uniqueSessionId
+                }
+            }
+            else
+            {
+                return{
+                    status:400,
+                    message:"Invalid Password"
+                }
+            }
+        }
+    }
+     static async loginAdminStateless(admin_email,admin_password){
+        const doesUserExist = await adminRepository.getAdminFromEmail(admin_email);
+        if(!doesUserExist){
+            return {
+                status:400,
+                message:"Email Invalid"
+            }
+        }
+        else
+        {
+            const dbPassword = doesUserExist.admin_password;
+            if(dbPassword===admin_password){
+                const generatedUserToken = await authService.createAdminToken(admin_email);
+                return{
+                    status:200,
+                    message:"Login Successfull With Token" + generatedUserToken
                 }
             }
             else

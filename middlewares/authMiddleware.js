@@ -1,12 +1,31 @@
 const authService = require("../services/authService");
-function isLoggedIn(req,res,next){
+async function isLoggedIn(req,res,next){
     const sessionId = req.body?.sessionId;
-    if(!sessionId){
-        res.send("Not Logged In");
+    const adminToken = req.body?.adminToken;
+    if(!sessionId && !adminToken){
+        res.send("Unauthorized");
     }
-    else
-    {
-        next();
+    else if(sessionId){
+        const isAdminVerified = await authService.getUser(sessionId);
+        console.log("ADMIN VERIFIED RESULT IN SESSION ",isAdminVerified);
+        if(!isAdminVerified){
+             res.send("Unauthorized User");
+        }
+        else
+        {
+            next();
+        }
+    }
+    else if(adminToken){
+        const isAdminVerified = await authService.verifyAdminToken(adminToken)
+         console.log("ADMIN VERIFIED RESULT IN TOKEN ",isAdminVerified);;
+        if(!isAdminVerified){
+             res.send("Unauthorized User");
+        }
+        else
+        {
+            next();
+        }
     }
 }
 module.exports = isLoggedIn;

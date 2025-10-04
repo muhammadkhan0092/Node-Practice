@@ -1,5 +1,6 @@
 const authService = require("../services/authService");
 async function isLoggedIn(req,res,next){
+    console.log("In Middle WARE AUTH")
     const sessionId = req.body?.sessionId;
     const adminToken = req.body?.adminToken;
     if(!sessionId && !adminToken){

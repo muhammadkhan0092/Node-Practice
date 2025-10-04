@@ -11,6 +11,7 @@ const dbConfig = require("./config/db");
 const reqLoggingMiddleware = require("./middlewares/loggingMiddleware");
 const errorloggingMiddleware = require("./middlewares/errorMiddleware");
 const authMiddleware = require("./middlewares/authMiddleware");
+const authorizationMiddleware = require("./middlewares/authorizationMiddleware");
 
 mongoose.connect('mongodb://localhost:27017/user-app')
 .then(()=>console.log("Mongo Connected"))
@@ -35,7 +36,7 @@ dbConfig
   });
 
 //ROUTES
-app.use("/users",authMiddleware,userOnlineRoutes);
+app.use("/users",authMiddleware,authorizationMiddleware(["admin"]),userOnlineRoutes);
 app.use("/admin",adminRoutes);
 //app.use("/users", userOfflineRoutes);
 

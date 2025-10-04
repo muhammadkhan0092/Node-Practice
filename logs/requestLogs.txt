@@ -133,3 +133,6 @@ METHOD -> GET    URL ->/users/online/
 METHOD -> GET    URL ->/users/online/
 METHOD -> GET    URL ->/users/online/
 METHOD -> GET    URL ->/users/online/
+METHOD -> POST    URL ->/admin/signup
+METHOD -> POST    URL ->/admin/login/token
+METHOD -> GET    URL ->/users/online/

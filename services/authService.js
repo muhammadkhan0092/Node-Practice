@@ -11,7 +11,10 @@ class authService{
     }
 
   static async createAdminToken(email) {
-  return jwt.sign({ email }, secretKey, { expiresIn: "1h" });
+  return jwt.sign({
+    role:"User",
+    email:"email" 
+    }, secretKey, { expiresIn: "1h" });
 }
 
 static async verifyAdminToken(token) {
